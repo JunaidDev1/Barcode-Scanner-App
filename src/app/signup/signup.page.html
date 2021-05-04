@@ -1,0 +1,36 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>signup</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content class="ion-padding">
+
+  <div class="ion-text-center mt-2 mb-2">
+    <img class="appLogo" src="/assets/imgs/logo.png">
+  </div>
+  <ion-grid class="ion-padding">
+    <ion-item class="rounded bg-light mb-1" lines="none">
+      <ion-label position="floating">Full Name</ion-label>
+      <ion-input type="email" placeholder="Name"></ion-input>
+    </ion-item>
+    <ion-item class="rounded bg-light mb-1" lines="none">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" placeholder="Email"></ion-input>
+    </ion-item>
+    <ion-item class="rounded bg-light mb-1" lines="none">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" placeholder="Password"></ion-input>
+    </ion-item>
+    <ion-item class="rounded bg-light mb-1" lines="none">
+      <ion-label position="floating">Confirm Password</ion-label>
+      <ion-input type="password" placeholder="Re-enter Password"></ion-input>
+    </ion-item>
+    <ion-button routerLink="/tabs" routerDirection="root" expand="block" class="rounded h-50">Signup</ion-button>
+    <p class="ion-text-center">
+      Already have an account?
+      <ion-text color="primary" routerLink="/login" routerDirection="back">Login</ion-text>
+    </p>
+  </ion-grid>
+
+</ion-content>

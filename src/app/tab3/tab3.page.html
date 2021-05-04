@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Leader Boards</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="trophy" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <h4 class="bold mt-0 mb-1">Last week top 10 scorers</h4>
+  <div style="border: 1px solid #dedede">
+    <ion-row class="ion-text-center">
+      <ion-col size="2">
+        <p class="appTxt bold">No.</p>
+      </ion-col>
+      <ion-col class="middleBorder" size="4">
+        <p class="appTxt bold">User Name</p>
+      </ion-col>
+      <ion-col class="borderRight" size="4">
+        <p class="appTxt bold">No. Scanned</p>
+      </ion-col>
+      <ion-col size="2">
+        <p class="appTxt bold">Points</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row [class.bg-light]="isEven" *ngFor="let item of topScorersList; let i=index; let isEven=even"
+      class="ion-text-center bg-light">
+      <ion-col size="2">
+        <p class="appTxt">{{i+1}}</p>
+      </ion-col>
+      <ion-col class="middleBorder" size="4">
+        <p class="appTxt">{{item.fullName}}</p>
+      </ion-col>
+      <ion-col class="borderRight" size="4">
+        <p class="appTxt">{{item.scans}}</p>
+      </ion-col>
+      <ion-col size="2">
+        <p class="appTxt">{{item.totalPoints}}</p>
+      </ion-col>
+    </ion-row>
+  </div>
+
+</ion-content>

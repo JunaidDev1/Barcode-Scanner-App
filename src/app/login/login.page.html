@@ -1,0 +1,27 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content class="ion-padding">
+
+  <div class="ion-text-center mt-3 mb-3">
+    <img class="appLogo" src="/assets/imgs/logo.png">
+  </div>
+  <ion-grid class="ion-padding">
+    <ion-item class="rounded bg-light mb-1" lines="none">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" placeholder="Email"></ion-input>
+    </ion-item>
+    <ion-item class="rounded bg-light mb-1" lines="none">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" placeholder="Password"></ion-input>
+    </ion-item>
+    <ion-button routerLink="/tabs" routerDirection="root" expand="block" class="rounded h-50">Login</ion-button>
+    <p class="ion-text-center">
+      Don't have an account? <ion-text color="primary" routerLink="/signup">Signup</ion-text>
+    </p>
+  </ion-grid>
+
+</ion-content>
