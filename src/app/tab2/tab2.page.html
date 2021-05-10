@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>Profile</ion-title>
     <ion-buttons slot="end">
-      <ion-button routerLink="/login" routerDirection="root">
+      <ion-button (click)="userAuth.logoutUser()" routerDirection="root">
         Logout <ion-icon name="log-out" slot="end"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -14,12 +14,12 @@
   <ion-grid>
     <h4 class="bold mt-0">My Profile</h4>
     <div class="ion-text-center">
-      <img (click)="openCameraOptions()" src="/assets/imgs/user.png" class="userIcon">
+      <img (click)="openCameraOptions()" [src]="imageData || '/assets/imgs/user.png'" class="userIcon">
     </div>
 
     <ion-item lines="none" class="mb-1 mt-1 rounded bg-light">
       <ion-label>
-        <h1>200</h1>
+        <h1>{{currentUser.totalPoints || 0}}</h1>
         <p>My Points</p>
       </ion-label>
       <ion-icon color="dark" name="trophy" slot="end" size="large"></ion-icon>
@@ -27,17 +27,19 @@
 
     <ion-item class="ion-no-padding">
       <ion-label position="floating">Full Name</ion-label>
-      <ion-input placeholder="Full Name" type="text"></ion-input>
+      <ion-input [(ngModel)]="currentUser.fullName" placeholder="Full Name" type="text"></ion-input>
     </ion-item>
     <ion-item class="ion-no-padding">
       <ion-label position="floating">Email</ion-label>
-      <ion-input placeholder="Email" type="email"></ion-input>
+      <ion-input disabled [(ngModel)]="currentUser.email" placeholder="Email" type="email"></ion-input>
     </ion-item>
     <ion-item class="ion-no-padding mb-1">
       <ion-label position="floating">My Bio</ion-label>
-      <ion-textarea placeholder="Bio" type="text" rows="5"></ion-textarea>
+      <ion-textarea [(ngModel)]="currentUser.bio" placeholder="Bio" type="text" rows="5"></ion-textarea>
     </ion-item>
-    <ion-button expand="block" class="h-50">Update Profile</ion-button>
+    <ion-button [disabled]="!currentUser.fullName" (click)="updateProfile()" expand="block" class="h-50">
+      Update Profile
+    </ion-button>
   </ion-grid>
 
 </ion-content>

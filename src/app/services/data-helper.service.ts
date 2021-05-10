@@ -2,6 +2,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { Subject } from 'rxjs';
 import { UtilsProviderService } from '../services/utils-provider.service';
 import firebase from 'firebase';
+import { iUser } from '../models/user';
 
 
 @Injectable({
@@ -38,9 +39,17 @@ export class DataHelperService {
     const uid = localStorage.getItem('uid');
     firebase.database().ref().child(`/users/${uid}`)
       .on('value', (snapshot) => {
-        localStorage.setItem('user', JSON.stringify(snapshot.val()));
+        const currentUser: iUser = snapshot.val();
+        this.allUsers[uid] = currentUser;
+        localStorage.setItem('user', JSON.stringify(currentUser));
         this.publishSomeData({ updateLocalUser: true });
       });
+  }
+
+  public deepCloneData(data: any): any {
+    if (data) {
+      return JSON.parse(JSON.stringify(data));
+    }
   }
 
   public publishSomeData(data: any) {

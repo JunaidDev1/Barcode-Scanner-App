@@ -9,16 +9,31 @@
   <div class="ion-text-center mt-3 mb-3">
     <img class="appLogo" src="/assets/imgs/logo.png">
   </div>
-  <ion-grid class="ion-padding">
+  <ion-grid [formGroup]="onLoginForm" class="ion-padding">
     <ion-item class="rounded bg-light mb-1" lines="none">
       <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" placeholder="Email"></ion-input>
+      <ion-input formControlName="email" type="email" placeholder="Email"></ion-input>
     </ion-item>
+    <p class="errorMsg" *ngIf="onLoginForm.get('email').hasError('required') && 
+        (onLoginForm.get('email').dirty || onLoginForm.get('email').touched)">
+      *Valid email is required!
+    </p>
+
     <ion-item class="rounded bg-light mb-1" lines="none">
       <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" placeholder="Password"></ion-input>
+      <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
     </ion-item>
-    <ion-button routerLink="/tabs" routerDirection="root" expand="block" class="rounded h-50">Login</ion-button>
+    <p class="errorMsg" *ngIf="onLoginForm.get('password').hasError('required') && 
+        (onLoginForm.get('password').dirty || onLoginForm.get('password').touched)">
+      *Input your password!
+    </p>
+
+    <ion-button expand="block" class="rounded h-50" (click)="loginAccount(onLoginForm.value)"
+      [disabled]="!onLoginForm.valid || loginProcessing">
+      <ion-spinner *ngIf="loginProcessing"></ion-spinner>
+      <span *ngIf="!loginProcessing">Login</span>
+    </ion-button>
+
     <p class="ion-text-center">
       Don't have an account? <ion-text color="primary" routerLink="/signup">Signup</ion-text>
     </p>

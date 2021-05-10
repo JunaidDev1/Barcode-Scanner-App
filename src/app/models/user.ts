@@ -5,4 +5,6 @@ export class iUser {
     numberOfScans: number;
     totalPoints: number;
     timestamp: number;
+    bio: string;
+    profileUrl: string;
 }
