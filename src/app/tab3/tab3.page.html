@@ -28,19 +28,19 @@
       </ion-col>
     </ion-row>
 
-    <ion-row [class.bg-light]="isEven" *ngFor="let item of topScorersList; let i=index; let isEven=even"
+    <ion-row [class.bg-light]="isEven" *ngFor="let user of topScorersList | slice: 0:10; let i=index; let isEven=even"
       class="ion-text-center bg-light">
       <ion-col size="2">
         <p class="appTxt">{{i+1}}</p>
       </ion-col>
       <ion-col class="middleBorder" size="4">
-        <p class="appTxt">{{item.fullName}}</p>
+        <p class="appTxt">{{user.user.fullName}}</p>
       </ion-col>
       <ion-col class="borderRight" size="4">
-        <p class="appTxt">{{item.scans}}</p>
+        <p class="appTxt">{{user.numberOfScans}}</p>
       </ion-col>
       <ion-col size="2">
-        <p class="appTxt">{{item.totalPoints}}</p>
+        <p class="appTxt">{{user.totalPoints}}</p>
       </ion-col>
     </ion-row>
   </div>

@@ -2,7 +2,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { Subject } from 'rxjs';
 import { UtilsProviderService } from '../services/utils-provider.service';
 import firebase from 'firebase';
-import { iUser } from '../models/user';
+import { iScan, iUser } from '../models/user';
 
 
 @Injectable({
@@ -12,6 +12,7 @@ export class DataHelperService {
 
   fooSubject = new Subject<any>();
   allUsers: any = {};
+  allScans: iScan[] = [];
 
   constructor(
     public zone: NgZone,
@@ -24,6 +25,7 @@ export class DataHelperService {
 
   fetchAllData() {
     this.getAllUsers();
+    this.getAllScans();
   }
 
   getAllUsers() {
@@ -43,6 +45,18 @@ export class DataHelperService {
         this.allUsers[uid] = currentUser;
         localStorage.setItem('user', JSON.stringify(currentUser));
         this.publishSomeData({ updateLocalUser: true });
+      });
+  }
+
+  getAllScans() {
+    const self = this;
+    self.allScans = [];
+    firebase.database().ref().child('scans')
+      .once('value', (snapshot) => {
+        const allScans = snapshot.val();
+        for (const key in allScans) {
+          self.allScans.push(allScans[key]);
+        }
       });
   }
 

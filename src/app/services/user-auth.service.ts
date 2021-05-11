@@ -33,6 +33,10 @@ export class UserAuthService {
 
   getCurrentUser() {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
+    if (!this.currentUser.totalPoints) {
+      this.currentUser.totalPoints = 0;
+      this.currentUser.numberOfScans = 0;
+    }
   }
 
   setUser(user: iUser) {
